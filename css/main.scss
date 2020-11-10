@@ -1,0 +1,636 @@
+//Fuentes
+$Ftitulo:'Montserrat',
+sans-serif;
+$Fsubtitulo:'Shanti',
+sans-serif;
+$Fcuerpo:'Amiko',
+sans-serif;
+
+
+//Colores
+$blanquito:#eeeeee;
+$celesteClaro:#32e0c4;
+$celesteOscuro:#0d7377;
+$pizarra:#212121;
+$violeta:#150485;
+
+$horizontal:landscape;
+$anchotablet: 700px;
+$pantallachica:800px;
+
+@mixin horizontal {
+    @media (orientation: #{$horizontal}) {
+        @content;
+    }
+}
+
+@mixin ochocien {
+    @media (max-width: #{$pantallachica}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$anchotablet}) {
+        @content;
+    }
+}
+
+@mixin scrollbars($size, $foreground-color, $radius, $background-color: mix($foreground-color, white, 50%)) {
+
+    // For Google Chrome
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: $radius;
+        background: $foreground-color;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: $radius;
+        background: $background-color;
+    }
+
+    // For Internet Explorer
+    & {
+        scrollbar-face-color: $foreground-color;
+        scrollbar-track-color: $background-color;
+    }
+}
+
+
+//Codigo
+
+* {
+    font-family: $Fcuerpo;
+    margin: 0;
+
+    html {
+        max-width: 1920px;
+        background-color: $blanquito;
+    }
+
+    body {
+        max-width: 1920px;
+        margin: 0 auto;
+        width: 100vw;
+        @include scrollbars(1.1em, $celesteOscuro, 6px, transparent);
+        background-image: linear-gradient(to top, rgb(0, 90, 167), rgb(255, 253, 228));
+
+    }
+
+
+    #principal {
+        max-width: 1920px;
+        position: relative;
+    }
+
+    //--------------------forma
+
+
+
+    #contenedor-boton {
+        position: fixed;
+        right: 0;
+        top: 10px;
+        z-index: 50;
+
+        @include horizontal {
+            right: 50px;
+        }
+    }
+
+    #boton {
+        position: relative;
+        background-color: #DA4454;
+        border: none;
+        color: $celesteClaro;
+        height: 60px;
+        outline: none;
+        width: 160px;
+
+
+        @include horizontal {
+            cursor: pointer;
+            background-color: #BD2888;
+            border: 3px solid #BD2888;
+            transition: 0.5s;
+            overflow: hidden;
+        }
+
+        p {
+            font-family: $Ftitulo;
+            font-size: 25px;
+            text-transform: uppercase;
+            z-index: 1;
+            position: absolute;
+            left: 3px;
+            top: 13px;
+        }
+    }
+
+    #boton:hover {
+        color: $celesteClaro;
+    }
+
+    #boton span {
+        @include horizontal {
+            position: absolute;
+            display: block;
+            width: 0px;
+            height: 0px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: #DA4454;
+            transition: width 0.5s, height 0.5s;
+            z-index: 0;
+        }
+    }
+
+    #boton:hover span {
+        @include horizontal {
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+    #contacto {
+        border: 3px solid $celesteOscuro;
+        border-radius: 10px;
+        background-image: linear-gradient(to right, rgb(218, 68, 83), rgb(137, 33, 107));
+        z-index: 300;
+        display: none;
+        position: fixed;
+        padding: 20px 0;
+        text-align: center;
+        overflow: auto;
+        top: 70px;
+        right: 0;
+        height: 70vh;
+        max-height: 900px;
+        @include scrollbars(.7em, $celesteOscuro, 6px, transparent);
+
+        @include horizontal {
+            width: 500px;
+            right: 50px;
+
+        }
+
+        #conttext {
+            position: absolute;
+            top: 50px;
+            height: 110px;
+            overflow: hidden;
+            left: 0px;
+            width: 100%;
+
+
+
+            #backtext {
+                position: absolute;
+                font-size: 100px;
+                font-family: $Ftitulo;
+                color: rgba($color: #5f0057, $alpha: .3);
+                z-index: 301;
+                cursor: default;
+
+            }
+        }
+
+        #contenedor {
+            position: relative;
+            z-index: 302;
+
+        }
+
+        #btn-form {
+            position: absolute;
+            right: 10px;
+            font-size: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: transparent;
+            border: 2px solid $celesteOscuro;
+            height: 40px;
+            width: 40px;
+            color: $celesteOscuro;
+        }
+
+        #btn-form:hover {
+            color: $celesteClaro;
+            border-color: $celesteClaro;
+        }
+
+        #data {
+
+            .info1 {
+                padding: 20px 0 10px 0;
+                font-weight: 600;
+                color: $celesteOscuro;
+            }
+
+            .Info2 {
+                color: $celesteClaro;
+
+            }
+
+            img {
+                width: 40px;
+                padding: 15px 10px;
+            }
+        }
+
+        #formu {
+            form {
+                margin: 0 auto;
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    padding: 5px 0;
+                    margin: 5px 0;
+                    background-color: transparent;
+                    border: none;
+                    border-left: 1px solid $celesteOscuro;
+                    padding-left: 5px;
+                    background-image: linear-gradient(to left, transparent, rgb(137, 33, 107));
+                    outline: none;
+                }
+
+
+                input:last-child {
+                    color: $celesteClaro;
+                    border-left: 2px solid $celesteClaro;
+                    border-right: 2px solid $celesteClaro;
+                    padding-left: 5px;
+                    outline: none;
+                    cursor: pointer;
+                    background-color: #5f0057;
+                    width: 100%;
+                }
+
+
+                input::placeholder {
+                    color: $celesteClaro;
+                }
+
+                textarea::placeholder {
+                    color: $celesteClaro;
+
+                }
+
+                textarea {
+                    outline: none;
+                    margin: 5px 0;
+                    background-color: transparent;
+                    background-image: linear-gradient(to left, transparent, rgb(137, 33, 107));
+                    border: none;
+                    border-left: 1px solid $celesteOscuro;
+                }
+            }
+        }
+    }
+
+    //--------------------main
+
+    main {
+        height: 100vh;
+        max-height: 1280px;
+        position: relative;
+        max-width: 1920px;
+        overflow: hidden;
+
+        @include horizontal {}
+
+
+        #patron {
+            height: 100%;
+            width: 100%;
+            z-index: -10;
+            position: absolute;
+            right: 15px;
+            clip-path: polygon(53% 0, 100% 50%, 49% 100%, 0% 100%, 0 49%, 0% 0%);
+
+
+            @include horizontal {
+                clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+            }
+
+        }
+
+        h1 {
+            position: absolute;
+            font-family: $Ftitulo;
+            bottom: 30vh;
+            right: 0px;
+            width: 60vw;
+            font-size: 5vh;
+            color: #BD2888;
+
+            @include horizontal {
+                display: inline-block;
+                bottom: 60px;
+                right: 30px;
+                font-size: 60px;
+                width: 350px;
+            }
+        }
+
+        #comp {
+            position: absolute;
+            width: 40vw;
+            bottom: 32vh;
+            right: 55vw;
+            z-index: -5;
+
+            @include horizontal {
+
+                width: 500px;
+                bottom: 40px;
+                left: 70px;
+            }
+        }
+    }
+
+    #recursos {
+        padding: 20px 0 20px 0;
+        display: grid;
+        text-align: center;
+        height: 100vh;
+        max-height: 150vh;
+        position: relative;
+        background-image: linear-gradient(to left, #098698, #06A99D);
+        z-index: -6;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        @include horizontal {
+            max-height: 1280px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+
+        }
+
+        #toolsbg {
+            z-index: -5;
+            position: absolute;
+            right: 10%;
+            bottom: 12px;
+            height: 80vh;
+
+            @include horizontal {
+                max-height: 1200px;
+            }
+        }
+
+        #computa {
+            display: none;
+            z-index: -6;
+            width: 40%;
+            position: absolute;
+            left: 3%;
+            bottom: 25px;
+
+            @include horizontal {
+                display: block;
+                max-width: 1000px;
+            }
+        }
+
+        .cuadro {
+            display: inline-block;
+            margin: 0 auto;
+            border: 1px solid $celesteOscuro;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px #465050;
+            position: relative;
+            z-index: -5;
+            background-color: #77aa77;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            width: 45vw;
+
+            @include horizontal {
+                width: 90%;
+                height: 90%;
+            }
+
+            .titulo {
+                font-family: $Fsubtitulo;
+                font-weight: 600;
+                padding: 10px 0;
+                font-size: 2.3vw;
+
+                @include horizontal {
+                    font-size: 34px;
+                }
+
+            }
+
+            .texto {
+                font-size: 2vw;
+                padding: 0 5px 10px 5px;
+                color: $pizarra;
+
+                @include horizontal {
+                    font-size: 14px;
+                    padding: 0 5px 10px 5px;
+
+                }
+            }
+
+            .cuadro-fondo {
+                position: absolute;
+                width: auto;
+                z-index: -4;
+                right: 0;
+                bottom: 0;
+                border-radius: 10px;
+                clip-path: polygon(0 68%, 100% 47%, 100% 100%, 0% 100%);
+
+            }
+
+            img {
+                padding-top: 10px;
+                width: 6vw;
+
+                @include horizontal {
+                    width: 60px;
+                }
+            }
+        }
+    }
+
+    #mocks {
+        height: 100vh;
+        background-color: #330000;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23D18'/%3E%3Cstop offset='1' stop-color='%23330000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FA3' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FA3' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: cover;
+        padding: 30px 0;
+        position: relative;
+        overflow: hidden;
+
+
+
+        h2 {
+            text-align: center;
+            padding: 10px 0 30px 0;
+            color: $blanquito;
+            font-size: 30px;
+            font-family: $Ftitulo;
+        }
+
+        #ejemplos {
+            padding-top: 30px;
+            height: 70vh;
+            display: flex;
+            overflow: auto;
+            border: 3px solid $celesteClaro;
+            border-radius: 10px;
+            margin: 0px 20px;
+            background-image: radial-gradient(circle at top right, rgb(138, 9, 69) 0%, rgb(138, 9, 69) 48%, rgb(138, 9, 120) 48%, rgb(138, 9, 120) 53%, rgb(138, 9, 69) 53%, rgb(138, 9, 69) 56%, rgb(145, 2, 208) 56%, rgb(145, 2, 208) 69%, rgb(181, 0, 237) 69%, rgb(181, 0, 237) 100%);
+            @include scrollbars(.5em, #520319, 6px, $celesteOscuro);
+
+
+            img {
+                margin: 0 20px;
+                width: auto;
+                height: 90%;
+
+                @include horizontal {
+                    height: 100%;
+                    width: auto;
+                    max-height: 60vh;
+
+                }
+            }
+        }
+    }
+
+    #about {
+        position: relative;
+        padding: 20px 0;
+        text-align: center;
+        max-height: 150vh;
+        height: 100vh;
+        z-index: -7;
+        background-image: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+
+        @include horizontal {
+            height: 100vh;
+            max-height: 1280px;
+        }
+
+        .fondillo {
+            overflow: hidden;
+            z-index: -6;
+            position: absolute;
+            width: 100%;
+            top: 0px;
+            right: 0px;
+            clip-path: polygon(30% 0, 100% 32%, 100% 100%, 0% 100%, 0 49%, 0% 0%);
+            height: 100%;
+
+            @include horizontal {
+                clip-path: polygon(70% 0, 100% 20%, 100% 80%, 80% 100%, 0 52%, 0 0);
+                height: 100vh;
+                max-height: 1280px;
+
+
+            }
+        }
+
+        .ima {
+            bottom: 5px;
+            position: absolute;
+            z-index: -5;
+        }
+
+        .yo1 {
+
+            left: 30px;
+            height: 70vh;
+
+            @include horizontal {
+                height: 50vh;
+                max-height: 1000px;
+            }
+
+        }
+
+        .yo2 {
+            display: none;
+
+            @include horizontal {
+                display: block;
+                right: 95px;
+                height: 80vh;
+                max-height: 1000px;
+            }
+        }
+
+        h3 {
+            padding: 20% 0 50px 0;
+            font-family: $Ftitulo;
+            font-size: 30px;
+            color: $blanquito;
+
+            @include horizontal {
+                color: $blanquito;
+                padding: 20px 0 50px 0;
+            }
+        }
+
+        p {
+            color: $blanquito;
+            font-size: 3vw;
+            width: 80vw;
+            padding: 10% 0;
+            margin: 0 auto;
+
+
+
+            @include horizontal {
+                width: 60vw;
+                max-width: 1280px;
+                font-size: 25px;
+                padding: 10px 0;
+
+            }
+        }
+    }
+
+    footer {
+        position: relative;
+        background-color: $pizarra;
+        z-index: -2;
+        overflow: hidden;
+        bottom: 0;
+
+        #img-footer {
+            position: absolute;
+            z-index: -1;
+            right: 0;
+            width: 100%;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+        }
+
+        .disclaimer {
+            padding: 20px 0;
+            color: $blanquito;
+            text-align: center;
+
+            a {
+                color: $blanquito;
+                text-decoration: none;
+            }
+        }
+    }
+
+}
